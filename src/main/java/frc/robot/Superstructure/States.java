@@ -17,7 +17,7 @@ public enum States {
     L1,
     CORALINTAKE,
     HOLDCORAL,
-    EDJECTCORAL,
+    EJECTCORAL,
     SCORE,
 
     //Algae

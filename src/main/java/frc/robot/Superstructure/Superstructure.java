@@ -93,6 +93,7 @@ public class Superstructure extends SubsystemBase{
                     //holding algae
                     wantedState = States.HOLDALGAE;
                 }
+                }
              
                 break;
             case REEFALGAE:

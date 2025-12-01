@@ -15,19 +15,19 @@ import frc.robot.Subsystems.Rollers.Rollers;
 import frc.robot.Subsystems.Rollers.RollersIO;
 
 import org.littletonrobotics.junction.Logger;
-// link to CANdle documentation:
-// https://api.ctr-electronics.com/phoenix/release/java/com/ctre/phoenix/led/CANdle.html
-// need to set up advantage kit or sumthin, idk
+
+
+
 
 public class Lights extends SubsystemBase {
-    private LightStates wantedLightState;
-    private LightStates currentLightState = LightStates.IDLE;
+    private AnimationStates wantedAnimationState;
+    private AnimationStates currentAnimationState;
     public final LightsIO io;
-    private static Lights instance = null;
+    private static Lights instance;
     private final RollersIOInputsAutoLogged inputs = new RollersIOInputsAutoLogged();
 
     private CANdle candle;
-    private Animation lastAnimation;
+    private AnimationStates lastAnimation;
     private static Lights light;    
 
 
@@ -45,23 +45,23 @@ public class Lights extends SubsystemBase {
         this.candle = new CANdle(19);
     }
     
-    public void setAnimation(LightStates LightStates) {
-        if (LightStates.time == 0) {
-            configAnimation(LightStates.animation);
+    public void setAnimation(AnimationStates animation) {
+        if (animation.time == 0) {
+            configAnimation(animation);
             return;
         }
-        this.currentLightState = LightStates;
+        this.currentAnimationState = animation;
     }
 
-    public void setAnimation(LightStates[] LightStates) {
-        for (LightStates LightStates2 : LightStates) {
-            setAnimation(LightStates2);
+    public void setAnimation(AnimationStates[] animations) {
+        for (AnimationStates animation : animations) {
+            setAnimation(animation);
         }
     }
 
-    private void configAnimation(Animation animation) {
+    private void configAnimation(AnimationStates animation) {
         if (animation == lastAnimation) return;
-        candle.animate(animation);
+        candle.animate(animation.animation);
         lastAnimation = animation;
     }
 
@@ -73,24 +73,31 @@ public class Lights extends SubsystemBase {
 
 
     public void handleStateTransitions() {
-        this.currentLightState = this.wantedLightState;
-
-
-        switch (wantedLightState) {
+        switch (wantedAnimationState) {
             default:
-                currentLightState = LightStates.IDLE;
+                this.currentAnimationState = AnimationStates.IDLE;
                 break;
             case CORAL_L4:
-                start = Timer.getFPGATimestamp();
-                configAnimation(LightStatesList.get(0).animation);
-                flag = 1;
+                this.currentAnimationState = AnimationStates.CORAL_L4;
                 break;
-            
         }
     }
 
     public void applyStates() {
-        this.setState(currentRollerState);
+
+        switch (currentAnimationState) {
+            default:
+                this.setAnimation(currentAnimationState);
+                break;
+            case CORAL_L4:
+                this.setAnimation(currentAnimationState);
+                break;
+        }
+        
+        // start = Timer.getFPGATimestamp();
+        // configAnimation(AnimationStates.CORAL_L4);
+        // flag = 1;
+        // break;
     }
 
 
@@ -99,12 +106,9 @@ public class Lights extends SubsystemBase {
     @Override
     public void periodic() {
         io.updateInputs(inputs);
-        //Log
 
-        //Handle Statements
         handleStateTransitions();
 
-        //Apply States
         applyStates();
     }
 }

@@ -6,20 +6,19 @@ import com.ctre.phoenix.led.CANdle;
 public interface LightsIO {
     @AutoLog
     public static class LightsIOInputs {
-        TimedAnimation animationState;
+        AnimationStates animationState;
     }
 
-    public default void setAnimation(TimedAnimation animations) {}
+    public default void setAnimation(AnimationStates animations) {}
 
-    public default void setAnimation(TimedAnimation[] animations) {}
+    public default void setAnimation(AnimationStates[] animations) {}
 
-    /** Updates the set of loggable inputs. */
     public default void updateInputs(LightsIOInputs inputs) {}
 
     public default void playAnimation(){}
 
-    public default TimedAnimation getAnimation() {
-        return TimedAnimation.DEFAULT;
+    public default AnimationStates getAnimation() {
+        return AnimationStates.DEFAULT;
     }
 
     public default void updateSim() {}

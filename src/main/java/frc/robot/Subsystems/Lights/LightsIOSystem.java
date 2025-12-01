@@ -6,24 +6,24 @@ import com.ctre.phoenix.led.CANdle;
 public class LightsIOSystem implements LightsIO {
 
     public CANdle candle;
-    private TimedAnimation animation;
+    private AnimationStates animation;
 
     public LightsIOSystem() {
         this.candle = new CANdle(24, "KrakensBus");
     }
 
-    public void setAnimation(TimedAnimation animations) {
+    public void setAnimation(AnimationStates animations) {
         this.animation = animations;
     }
 
-    public void setAnimation(TimedAnimation[] animations) {
-        for (TimedAnimation animations2 : animations) {
+    public void setAnimation(AnimationStates[] animations) {
+        for (AnimationStates animations2 : animations) {
             setAnimation(animations2);
         }
     }
 
     @Override
-    public TimedAnimation getAnimation() {
+    public AnimationStates getAnimation() {
         return this.animation;
     }
 

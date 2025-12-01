@@ -6,7 +6,7 @@ import com.ctre.phoenix.led.StrobeAnimation;
 
 import frc.robot.Constants;
 
-public enum LightStates {
+public enum AnimationStates {//set colors
     DEFAULT(new StrobeAnimation(255, 255, 255, 0, 1, Constants.NUM_LEDS), 0),
     HOLD_ALGAE(new StrobeAnimation(255, 18, 255, 0, 1, Constants.NUM_LEDS), 0),
     INTAKE_CORAL(new StrobeAnimation(255, 255, 0, 0, 0.5, Constants.NUM_LEDS), 0),
@@ -24,7 +24,7 @@ public enum LightStates {
     
     public Animation animation;
     public double time;
-    private LightStates (Animation animation, double time) {
+    private AnimationStates (Animation animation, double time) {
         this.animation = animation;
         this.time = time;
     }

@@ -22,6 +22,7 @@ public class Robot extends LoggedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  private RobotContainer robotContainer;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -35,6 +36,8 @@ public class Robot extends LoggedRobot {
 
   @Override
   public void robotInit(){
+    robotContainer = new RobotContainer();
+
     // Choose log storage location (on robot)
     Logger.addDataReceiver(new WPILOGWriter("/home/lvuser/logs"));
     

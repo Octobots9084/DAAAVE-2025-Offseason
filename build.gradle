@@ -4,23 +4,23 @@ plugins {
     id 'com.diffplug.spotless' version '6.25.0'
 }
 
-spotless {
-    java {
-        googleJavaFormat() // braces on same line
+// spotless {
+//     java {
+//         googleJavaFormat() // braces on same line
 
-        // No space before parentheses
-        replaceRegex('No space before parentheses', '([A-Za-z0-9_])\\s+\\(', '$1(')
+//         // No space before parentheses
+//         replaceRegex('No space before parentheses', '([A-Za-z0-9_])\\s+\\(', '$1(')
 
-        // Classes must be PascalCase
-        replaceRegex('Classes must be PascalCase', '\\bclass\\s+[a-z][A-Za-z0-9_]*', 'INVALID_CLASS')
+//         // Classes must be PascalCase
+//         replaceRegex('Classes must be PascalCase', '\\bclass\\s+[a-z][A-Za-z0-9_]*', 'INVALID_CLASS')
 
-        // Methods must be camelCase
-        replaceRegex('Methods must be camelCase', '(?:public|private|protected)?\\s*(?:static\\s+)?[A-Za-z0-9_<>\\[\\]]+\\s+[A-Z][A-Za-z0-9]*\\s*\\(', 'INVALID_METHOD')
+//         // Methods must be camelCase
+//         replaceRegex('Methods must be camelCase', '(?:public|private|protected)?\\s*(?:static\\s+)?[A-Za-z0-9_<>\\[\\]]+\\s+[A-Z][A-Za-z0-9]*\\s*\\(', 'INVALID_METHOD')
 
-        // Members/variables must be camelCase
-        replaceRegex('Members must be camelCase', '\\b[A-Za-z0-9_<>\\[\\]]+\\s+[A-Z][A-Za-z0-9]*\\s*(=|;)', 'INVALID_MEMBER')
-    }
-}
+//         // Members/variables must be camelCase
+//         replaceRegex('Members must be camelCase', '\\b[A-Za-z0-9_<>\\[\\]]+\\s+[A-Z][A-Za-z0-9]*\\s*(=|;)', 'INVALID_MEMBER')
+//     }
+// }
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17

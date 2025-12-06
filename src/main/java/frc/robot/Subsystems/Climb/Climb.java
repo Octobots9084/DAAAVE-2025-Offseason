@@ -10,7 +10,7 @@ import com.revrobotics.spark.ClosedLoopSlot;
 public class Climb extends SubsystemBase {
     public final ClimbIO io;
     private static Climb instance = null;
-    private final ClimbIOInputsAutoLogged inputs = new ClimbIOInputsAutoLogged();
+    // private final ClimbIOInputsAutoLogged inputs = new ClimbIOInputsAutoLogged();
     private ClimbStates currentClimbState = ClimbStates.STORED;
     private ClimbStates wantedClimbStates;
     private Servo climbRelease = new Servo(8);
@@ -37,8 +37,8 @@ public class Climb extends SubsystemBase {
 
     @Override
     public void periodic() {
-        io.updateInputs(inputs);
-        Logger.processInputs("ClimbInputs", inputs);
+        // io.updateInputs(inputs);
+        // Logger.processInputs("ClimbInputs", inputs);
         // SmartDashboard.putBoolean("ClimbTopLimitSwitch", topLimitSwitch.get());
         // SmartDashboard.putBoolean("ClimbBottomLimitSwitch", bottomLimitSwitch.get());
         this.handleStateTransition();
@@ -62,7 +62,7 @@ public class Climb extends SubsystemBase {
     }
 
     public ClimbStates getState() {
-        return climbState;
+        return currentClimbState;
     }
 
     public void updateSim() {

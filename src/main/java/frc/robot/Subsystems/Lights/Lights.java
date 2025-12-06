@@ -21,9 +21,9 @@ import org.littletonrobotics.junction.Logger;
 
 public class Lights extends SubsystemBase {
     private LightStates lightState;
-    public final LightsIO io;
+    // public final LightsIO io;
     private static Lights instance = null;
-    private final LightsIOInputsAutoLogged inputs = new LightsIOInputsAutoLogged();
+    // private final LightsIOInputsAutoLogged inputs = new LightsIOInputsAutoLogged();
 
     private CANdle candle;
     private static Lights light;    
@@ -66,6 +66,6 @@ public class Lights extends SubsystemBase {
 
     @Override
     public void periodic() {
-        io.updateInputs(inputs);
+        // io.updateInputs(inputs);
     }
 }

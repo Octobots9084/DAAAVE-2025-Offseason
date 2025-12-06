@@ -12,7 +12,7 @@ public class Rollers extends SubsystemBase{
     private boolean hasAlgae = false;
     public final RollersIO io;
     private static Rollers instance = null;
-    private final RollersIOInputsAutoLogged inputs = new RollersIOInputsAutoLogged();
+    // private final RollersIOInputsAutoLogged inputs = new RollersIOInputsAutoLogged();
 
     
     public Rollers(RollersIO io) {
@@ -33,7 +33,7 @@ public class Rollers extends SubsystemBase{
 
     @Override
     public void periodic(){
-        io.updateInputs(inputs);
+        // io.updateInputs(inputs);
         //Log
 
         //Handle Statements

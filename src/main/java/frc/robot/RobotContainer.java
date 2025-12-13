@@ -5,17 +5,15 @@
 package frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
-import com.pathplanner.lib.auto.NamedCommands;
-
-import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
+import frc.robot.Subsystems.Drive.SwerveIOCTRE;
+import frc.robot.Subsystems.Drive.SwerveSubsystem;
 import frc.robot.Subsystems.Lights.Lights;
 import frc.robot.Subsystems.Lights.LightsIO;
 
-import java.util.Optional;
-import org.ironmaple.simulation.SimulatedArena;
 
 
 
@@ -30,13 +28,23 @@ import org.ironmaple.simulation.SimulatedArena;
  */
 public class RobotContainer {
     private final SendableChooser<Command> autoChooser;
-
+    private final SwerveSubsystem swerveSubsystem;
+    static CommandJoystick driverLeft = ControlMap.DRIVER_LEFT;
+    static CommandJoystick driverRight = ControlMap.DRIVER_RIGHT;
+    static CommandJoystick driverButtons = ControlMap.DRIVER_BUTTONS;
+    static CommandJoystick coDriverLeft = ControlMap.CO_DRIVER_LEFT;
+    static CommandJoystick coDriverRight = ControlMap.CO_DRIVER_RIGHT;
+    static CommandJoystick coDriverButtons = ControlMap.CO_DRIVER_BUTTONS;
     // The robot's subsystems and commands are defined here...
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
     public RobotContainer() {
+        this.swerveSubsystem = new SwerveSubsystem(
+            new SwerveIOCTRE(), driverLeft, driverRight, Constants.maxAngularVelocity, Constants.maxVelocity
+
+        );
         switch (Constants.currentMode) {
             case REAL:
                 Lights.setInstance(new LightsIO(){});

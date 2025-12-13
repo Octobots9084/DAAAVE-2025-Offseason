@@ -45,6 +45,14 @@ public final class Constants {
     public static int NUM_LEDS;
     public static double LOOP_TIME = 0.02;
     public static List<Double> intakeTimes = new ArrayList<>();
+    public static double maxVelocity = 1;
+    public static double maxAngularVelocity = 1;
+    public static double maxTelopVelocity = 1;
+    public static double maxTelopAngularVelocity = 1;
+    //temporary values
+    public static final double leftXDeadband = 0.07;
+    public static final double leftYDeadband = 0.07;
+    public static final double rightXDeadband = 0.07; 
 
     public static enum Mode {
         /** Running on a real robot. */

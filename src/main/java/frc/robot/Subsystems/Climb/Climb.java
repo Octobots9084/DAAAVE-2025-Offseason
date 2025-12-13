@@ -9,7 +9,6 @@ import com.revrobotics.spark.ClosedLoopSlot;
 
 public class Climb extends SubsystemBase {
     public final ClimbIO io;
-    public ClimbStates climbState;
     private static Climb instance = null;
     // private final ClimbIOInputsAutoLogged inputs = new ClimbIOInputsAutoLogged();
     private ClimbStates currentClimbState = ClimbStates.STORED;
